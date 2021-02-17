@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ObjectPlacement : MonoBehaviour
 {
+    public Transform Pointer;
 
     private Vector3? pos;
 
@@ -25,11 +26,13 @@ public class ObjectPlacement : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, int.MaxValue, layer))
             {
+                Pointer.position = hit.point;
+
                 pos = hit.point;
 
                 if (spawning)
                 {
-                    if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift))
+                    if (Input.GetMouseButton(1)) //&& Input.GetKey(KeyCode.LeftShift))
                     {
                         Collider[] colliders = Physics.OverlapSphere(hit.point + Vector3.up * 0.7f, .5f, ~layer);
                         if (colliders.Length > 0)
@@ -72,14 +75,14 @@ public class ObjectPlacement : MonoBehaviour
         spawning = true;
     }
 
-    void OnDrawGizmos()
-    {
-        if (pos.HasValue)
-        {
-            //Gizmos.color = Color.magenta;
-            //Gizmos.DrawCube(pos.Value, new Vector3(.5f, .5f, .5f));
-            //Gizmos.color = Color.red;
-            //Gizmos.DrawSphere(pos.Value + Vector3.up * 0.7f, .5f);
-        }
-    }
+    //void OnDrawGizmos()
+    //{
+    //    if (pos.HasValue)
+    //    {
+    //        Gizmos.color = Color.magenta;
+    //        Gizmos.DrawCube(pos.Value, new Vector3(.5f, .5f, .5f));
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawSphere(pos.Value + Vector3.up * 0.7f, .5f);
+    //    }
+    //}
 }
