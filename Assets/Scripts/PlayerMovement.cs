@@ -1,30 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using static GameModeManager;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    [SerializeField]
+    private GameModeManager GameModeManager;
+    [SerializeField]
+    private CharacterController Controller;
+    [SerializeField]
+    private float Speed = 4f;
+    [SerializeField]
+    private float SprintSpeedMultiplier = 2f;
+    [SerializeField]
+    private float CreativeModeSpeedMultiplier = 2f;
+    [SerializeField]
+    private float CreativeModeFlySpeed = 4f;
+    [SerializeField]
+    private float Gravity = -9.8f;
+    [SerializeField]
+    private float JumpHeight = 1.2f;
+    [SerializeField]
+    private float GroundDistance = 0.375f;
+    [SerializeField]
+    private Transform GroundCheck;
+    [SerializeField]
+    private LayerMask PlayerMask;
 
-    public float speed = 4f;
-
-    public float gravity = -9.8f;
-
-    public float jumpHeight = 1.2f;
-
-    public float groundDistance = 0.15f;
-
-    public Vector3 velocity;
-
-    public Transform groundCheck;
-
-    public bool isGrounded;
-
-    public LayerMask playerMask;
-
-    private DoubleClicker tabDoubbleCatch = new DoubleClicker(KeyCode.Space);
-
-    private bool creativeMode = false;
+    private Vector3 Velocity;
+    private bool IsGrounded;
 
     void Update()
     {
@@ -33,120 +36,70 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        if (tabDoubbleCatch.DoubleClickCheak())
+        if (GameModeManager.Mode == GameMode.Creative)
         {
-            creativeMode = !creativeMode;
-        }
-
-        if (creativeMode)
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                velocity.y = 2f;
-                
-            }
-            else if (Input.GetKey(KeyCode.LeftShift))
-            {
-                velocity.y = -2f;
-            }
-            else
-            {
-                velocity.y = 0f;
-            }
-            controller.Move(velocity * Time.deltaTime);
+            CreativeModeMovement(ref move);
         }
         else
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, ~playerMask);
-            
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                move = move * 2f;
-            }
-
-            if (isGrounded && velocity.y <= -2)
-            {
-                velocity.y = -2f;
-                if (Input.GetButtonDown("Jump"))
-                {
-                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                }
-            }
-            else
-            {
-                velocity.y += gravity * Time.deltaTime;
-            }
-
-            controller.Move(velocity * Time.deltaTime);
+            SurvivalModeMovement(ref move);
         }
 
-        controller.Move(move * speed * Time.deltaTime);
+        Controller.Move(move * Speed * Time.deltaTime);
     }
 
-
-
-    public class DoubleClicker
+    private void CreativeModeMovement(ref Vector3 move)
     {
-        /// <summary>
-        /// Construcor with keycode and deltaTime set
-        /// </summary>
-        public DoubleClicker(KeyCode key, float deltaTime)
-        {
-            //set key
-            this._key = key;
+        move = move * CreativeModeSpeedMultiplier;
+        Velocity.y = 0f;
 
-            //set deltaTime
-            this._deltaTime = deltaTime;
+        if (Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftShift))
+        {
+            Velocity.y = CreativeModeFlySpeed;
         }
 
-        /// <summary>
-        /// Construcor with defult deltatime 
-        /// </summary>
-        public DoubleClicker(KeyCode key)
+        if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.Space))
         {
-            //set key
-            this._key = key;
+            Velocity.y = -CreativeModeFlySpeed;
+        }
+        Controller.Move(Velocity * Time.deltaTime);
+    }
+
+    private void SurvivalModeMovement(ref Vector3 move)
+    {
+        IsGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, ~PlayerMask);
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            move = move * SprintSpeedMultiplier;
         }
 
-        private KeyCode _key;
-        private float _deltaTime = defultDeltaTime;
-
-        //defult deltaTime
-        public const float defultDeltaTime = 0.3f;
-
-        /// <summary>
-        /// Current key property
-        /// </summary>
-        public KeyCode key
+        if (IsGrounded)
         {
-            get { return _key; }
-        }
-
-        /// <summary>
-        /// Current deltaTime property
-        /// </summary>
-        public float deltaTime
-        {
-            get { return _deltaTime; }
-        }
-
-        //time pass
-        private float timePass = 0;
-        /// <summary>
-        /// Cheak for double press
-        /// </summary>
-        public bool DoubleClickCheak()
-        {
-            if (timePass > 0) { timePass -= Time.deltaTime; }
-
-            if (Input.GetKeyDown(_key))
+            if (Velocity.y <= -2)
             {
-                if (timePass > 0) { timePass = 0; return true; }
-
-                timePass = _deltaTime;
+                Velocity.y = -2f;
             }
 
-            return false;
+            Controller.stepOffset = 0.5f;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                Velocity.y = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                Controller.stepOffset = 0f;
+            }
         }
+        else
+        {
+            Velocity.y += Gravity * Time.deltaTime;
+            Controller.stepOffset = 0;
+        }
+
+        Controller.Move(Velocity * Time.deltaTime);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(GroundCheck.position, GroundDistance);
     }
 }
