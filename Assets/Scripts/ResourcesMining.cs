@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ResourcesMining : MonoBehaviour
 {
+    public LayerMask playerMask;
+
     public float Distance;
     public Selectable CurrentSelectable;
     void Update()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Distance))
+        if (Physics.Raycast(ray, out hit, Distance, ~playerMask))
         {
             Selectable selectable = hit.collider.gameObject.GetComponent<Selectable>();
             
