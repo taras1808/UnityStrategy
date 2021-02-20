@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Selectable : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class Selectable : MonoBehaviour
     private int Count = 5;
     public Material selectedMaterial;
     public Material defaultMaterial;
+
+    public GameObject showObject;
     public void Select()
     {
         GetComponent<Renderer>().material = selectedMaterial;
+        showObject.SetActive(true);
         if (Input.GetKeyDown("e"))
         {
             Collect.Money += Count * transform.localScale.x;
@@ -28,6 +32,7 @@ public class Selectable : MonoBehaviour
     public void Deselect()
     {
         GetComponent<Renderer>().material = defaultMaterial;
+        showObject.SetActive(false);
     }
 
     private IEnumerator WaitBeforeShow()
