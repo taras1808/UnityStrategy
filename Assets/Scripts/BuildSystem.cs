@@ -10,7 +10,7 @@ public class BuildSystem : MonoBehaviour
     private GameObject previewGameObject = null;
     private Preview previewScript = null;
 
-    public float distance = 10f;
+    public float distance = 25f;
 
     public float stickTolerance = 1f;
 
@@ -19,19 +19,22 @@ public class BuildSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            if (previewGameObject) previewGameObject.transform.Rotate(0, 90f * Time.deltaTime, 0);
+            if (previewGameObject) previewGameObject.transform.Rotate(0, 90f, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             CancelBuild();
         }
 
         if (Input.GetMouseButtonDown(0) && isBuilding)
         {
-            StopBuild();
+            if (previewScript.isSnapped)
+            {
+                StopBuild();
+            }
         }
 
         if (isBuilding)
@@ -55,7 +58,7 @@ public class BuildSystem : MonoBehaviour
 
     public void NewBuild(GameObject go)
     {
-        if (isBuilding) CancelBuild();
+        CancelBuild();
         previewGameObject = Instantiate(go, Vector3.zero, Quaternion.identity);
         previewScript = previewGameObject.GetComponent<Preview>();
         isBuilding = true;
@@ -73,18 +76,11 @@ public class BuildSystem : MonoBehaviour
 
     private void StopBuild()
     {
-        if (previewGameObject.active && previewScript.isSnapped)
-        {
-            previewScript.Place();
-            previewGameObject = null;
-            previewScript = null;
-            isBuilding = false;
-            pauseBuilding = false;
-        }
-        else
-        {
-            CancelBuild();
-        }
+        previewScript.Place();
+        previewGameObject = null;
+        previewScript = null;
+        isBuilding = false;
+        pauseBuilding = false;
     }
 
     public void PauseBuild(bool value)
@@ -98,11 +94,10 @@ public class BuildSystem : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distance, ~layer))
         {
+            previewGameObject.SetActive(true);
             float y = hit.point.y + (previewGameObject.transform.localScale.y * 0.5f);
             Vector3 pos = new Vector3(hit.point.x, y, hit.point.z);
-            previewGameObject.SetActive(true);
             previewGameObject.transform.position = pos;
-            //previewGameObject.transform.position = hit.point;
         }
         else
         {

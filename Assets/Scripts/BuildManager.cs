@@ -15,17 +15,17 @@ public class BuildManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H) && !buildSystem.isBuilding)
+        if (Input.GetKeyDown(KeyCode.H))
         {
             buildSystem.NewBuild(foundation);
         }
 
-        if (Input.GetKeyDown(KeyCode.J) && !buildSystem.isBuilding)
+        if (Input.GetKeyDown(KeyCode.J))
         {
             buildSystem.NewBuild(wall);
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && !buildSystem.isBuilding)
+        if (Input.GetKeyDown(KeyCode.K))
         {
             buildSystem.NewBuild(ceiling);
         }

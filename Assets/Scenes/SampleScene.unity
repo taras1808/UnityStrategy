@@ -1981,6 +1981,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 7905195903054627226, guid: 29acb4a2abc584bc8a31f67635c5b66b,
+        type: 3}
+      propertyPath: distance
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7905195903054627227, guid: 29acb4a2abc584bc8a31f67635c5b66b,
         type: 3}
       propertyPath: m_Name

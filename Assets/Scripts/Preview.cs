@@ -13,7 +13,7 @@ public class Preview : MonoBehaviour
 
     private BuildSystem buildSystem;
 
-    public bool isSnapped { get; private set; }
+    public bool isSnapped = false;
     public bool isFoundation = false;
 
     public List<string> tagsSnapTo = new List<string>();
@@ -31,7 +31,7 @@ public class Preview : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void ChangeColor()
+    public void ChangeColor()
     {
         if (isSnapped)
         {
@@ -76,5 +76,4 @@ public class Preview : MonoBehaviour
             }
         }
     }
-
 }
