@@ -12,16 +12,16 @@ public class BuildSystem : MonoBehaviour
 
     public float distance = 25f;
 
-    public float stickTolerance = 1f;
+    public float stickTolerance = 0.5f;
 
     public bool isBuilding = false;
     private bool pauseBuilding = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKey(KeyCode.R))
         {
-            if (previewGameObject) previewGameObject.transform.Rotate(0, 90f, 0);
+            if (previewGameObject) previewGameObject.transform.Rotate(0, 90f * Time.deltaTime, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -31,7 +31,7 @@ public class BuildSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && isBuilding)
         {
-            if (previewScript.isSnapped)
+            if (previewScript.isSnapped && previewScript.isGood)
             {
                 StopBuild();
             }
@@ -59,7 +59,7 @@ public class BuildSystem : MonoBehaviour
     public void NewBuild(GameObject go)
     {
         CancelBuild();
-        previewGameObject = Instantiate(go, Vector3.zero, Quaternion.identity);
+        previewGameObject = Instantiate(go, cam.transform.position + cam.transform.forward * 5, Quaternion.identity);
         previewScript = previewGameObject.GetComponent<Preview>();
         isBuilding = true;
         pauseBuilding = false;
@@ -94,14 +94,35 @@ public class BuildSystem : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distance, ~layer))
         {
-            previewGameObject.SetActive(true);
-            float y = hit.point.y + (previewGameObject.transform.localScale.y * 0.5f);
-            Vector3 pos = new Vector3(hit.point.x, y, hit.point.z);
-            previewGameObject.transform.position = pos;
+            if (previewScript.tagsSnapTo.Contains(hit.transform.gameObject.tag))
+            {
+                //PauseBuild(true);
+                previewGameObject.transform.position = hit.transform.gameObject.transform.position;
+                previewGameObject.transform.rotation = hit.transform.rotation;
+                previewScript.isSnapped = true;
+            }
+            else
+            {
+                if (previewScript.isFoundation)
+                {
+                    float y = hit.point.y + (previewGameObject.transform.localScale.y * 0.5f);
+                    Vector3 pos = new Vector3(hit.point.x, y, hit.point.z);
+                    previewGameObject.transform.position = pos;
+                    previewScript.isSnapped = true;
+                }
+                else
+                {
+                    previewGameObject.transform.position = cam.transform.position + cam.transform.forward * 5;
+                    previewScript.isSnapped = false;
+                }
+            }
         }
         else
         {
-            previewGameObject.SetActive(false);
+            previewGameObject.transform.position = cam.transform.position + cam.transform.forward * 5;
+            previewScript.isSnapped = false;
         }
+
+        previewScript.ChangeColor();
     }
 }

@@ -16,13 +16,16 @@ public class Preview : MonoBehaviour
     public bool isSnapped = false;
     public bool isFoundation = false;
 
+    public bool isGood = true;
+
     public List<string> tagsSnapTo = new List<string>();
 
-    private void Start()
+    public int counter = 0;
+
+    private void Awake()
     {
         buildSystem = FindObjectOfType<BuildSystem>();
         renderer = GetComponent<MeshRenderer>();
-        ChangeColor();
     }
 
     public void Place()
@@ -33,7 +36,7 @@ public class Preview : MonoBehaviour
 
     public void ChangeColor()
     {
-        if (isSnapped)
+        if (isSnapped && isGood)
         {
             renderer.material = goodMat;
         }
@@ -42,38 +45,52 @@ public class Preview : MonoBehaviour
             renderer.material = badMat;
         }
 
-        if (isFoundation)
-        {
-            renderer.material = goodMat;
-            isSnapped = true;
-        }
+        //if (isFoundation)
+        //{
+        //    renderer.material = goodMat;
+        //    isSnapped = true;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < tagsSnapTo.Count; i++)
+        if (other.isTrigger) return;
+        counter++;
+        if (counter > 1)
         {
-            string currentTag = tagsSnapTo[i];
-            if (other.tag == currentTag)
-            {
-                buildSystem.PauseBuild(true);
-                transform.position = other.transform.position;
-                isSnapped = true;
-                ChangeColor();
-            }
+            isGood = false;
+            ChangeColor();
         }
+        //for (int i = 0; i < tagsSnapTo.Count; i++)
+        //{
+        //    string currentTag = tagsSnapTo[i];
+        //    if (other.tag == currentTag)
+        //    {
+        //        buildSystem.PauseBuild(true);
+        //        transform.position = other.transform.position;
+        //        isSnapped = true;
+        //        ChangeColor();
+        //    }
+        //}
     }
 
     private void OnTriggerExit(Collider other)
     {
-        for (int i = 0; i < tagsSnapTo.Count; i++)
+        if (other.isTrigger) return;
+        counter--;
+        if (counter == 1)
         {
-            string currentTag = tagsSnapTo[i];
-            if (other.tag == currentTag)
-            {
-                isSnapped = false;
-                ChangeColor();
-            }
+            isGood = true;
+            ChangeColor();
         }
+        //for (int i = 0; i < tagsSnapTo.Count; i++)
+        //{
+        //    string currentTag = tagsSnapTo[i];
+        //    if (other.tag == currentTag)
+        //    {
+        //        isSnapped = false;
+        //        ChangeColor();
+        //    }
+        //}
     }
 }
