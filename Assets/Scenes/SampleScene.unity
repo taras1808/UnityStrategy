@@ -771,7 +771,7 @@ RectTransform:
   - {fileID: 240032244}
   - {fileID: 805428383}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1321,7 +1321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afd93e676d9cb347a4ad15547bf59f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: 2
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  Distance: 3
   CurrentSelectable: {fileID: 0}
 --- !u!1 &1029141086
 GameObject:
@@ -1422,7 +1425,7 @@ Transform:
   - {fileID: 5291668}
   - {fileID: 2061012691}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1154159215
 GameObject:
@@ -1736,7 +1739,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 403814410}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1831029621
 MonoBehaviour:
@@ -1954,7 +1957,7 @@ PrefabInstance:
     - target: {fileID: 5172158433592338890, guid: f01d405ec4b6b4e04bad1993e2f7ffdb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5172158433592338890, guid: f01d405ec4b6b4e04bad1993e2f7ffdb,
         type: 3}

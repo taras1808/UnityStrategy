@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Collect : MonoBehaviour
 {
-    public static int Money;
+    public static float Money;
     public Text TextMoney;
 
     void Start()
@@ -16,6 +16,6 @@ public class Collect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TextMoney.text = "" + Money;
+        TextMoney.text = Money.ToString("0");
     }
 }
