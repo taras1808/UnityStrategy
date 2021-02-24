@@ -4,9 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Foundation_SP
-  - Wall_SP
-  - Ceiling_SP
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,7 +15,7 @@ TagManager:
   - 
   - 
   - Player
-  - BuildLayer
+  - 
   - 
   - 
   - 

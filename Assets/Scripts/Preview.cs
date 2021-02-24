@@ -4,76 +4,40 @@ using UnityEngine;
 
 public class Preview : MonoBehaviour
 {
-
     public GameObject prefab;
 
-    private MeshRenderer renderer;
+    private MeshRenderer[] renderer;
     public Material goodMat;
     public Material badMat;
 
-    private BuildSystem buildSystem;
+    private bool IsGood = false;
 
-    public bool isSnapped = false;
-    public bool isFoundation = false;
-
-    public List<string> tagsSnapTo = new List<string>();
-
-    private void Start()
+    private void Awake()
     {
-        buildSystem = FindObjectOfType<BuildSystem>();
-        renderer = GetComponent<MeshRenderer>();
-        ChangeColor();
+        renderer = GetComponentsInChildren<MeshRenderer>();
+        ChangeColor(true);
     }
 
     public void Place()
     {
-        Instantiate(prefab, transform.position, transform.rotation);
+        if (IsGood)
+        {
+            Instantiate(prefab, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 
-    public void ChangeColor()
+    public void ChangeColor(bool isGood)
     {
-        if (isSnapped)
+        for (int i = 0; i < renderer.Length; i++)
         {
-            renderer.material = goodMat;
-        }
-        else
-        {
-            renderer.material = badMat;
-        }
-
-        if (isFoundation)
-        {
-            renderer.material = goodMat;
-            isSnapped = true;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        for (int i = 0; i < tagsSnapTo.Count; i++)
-        {
-            string currentTag = tagsSnapTo[i];
-            if (other.tag == currentTag)
+            Material[] materials = new Material[renderer[i].materials.Length];
+            for (int j = 0; j < materials.Length; j++)
             {
-                buildSystem.PauseBuild(true);
-                transform.position = other.transform.position;
-                isSnapped = true;
-                ChangeColor();
+                materials[j] = isGood ? goodMat : badMat;
             }
+            renderer[i].materials = materials;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        for (int i = 0; i < tagsSnapTo.Count; i++)
-        {
-            string currentTag = tagsSnapTo[i];
-            if (other.tag == currentTag)
-            {
-                isSnapped = false;
-                ChangeColor();
-            }
-        }
+        IsGood = isGood;
     }
 }
