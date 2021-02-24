@@ -7,7 +7,7 @@ public class Selectable : MonoBehaviour
 {
     void Start()
     {
-        transform.localScale = Random.Range(0.5f, 4) * Vector3.one;
+        transform.localScale = Random.Range(0.5f, 2) * Vector3.one;
     }
 
     private int Count = 5;
