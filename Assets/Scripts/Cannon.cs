@@ -31,12 +31,13 @@ public class Cannon : MonoBehaviour
 
     private void Update()
     {
+        enemies = enemies.Where(e => e != null).ToList();
         if (enemies.Count == 0) { return; }
         Vector3 position = enemies.OrderBy(e => (e.position - transform.position).magnitude).First().position;
         Vector3 v = (position - cannon.position).normalized;
         currentRotate = Vector3.SmoothDamp(currentRotate, v, ref velocity, speed);
         rotate.rotation = Quaternion.LookRotation(new Vector3(currentRotate.x, 0, currentRotate.z));
-        cannon.rotation = Quaternion.LookRotation(currentRotate, rotate.right);
+        cannon.rotation = Quaternion.LookRotation(currentRotate);
         if (!isFire)
         {
             StartCoroutine(Fire());

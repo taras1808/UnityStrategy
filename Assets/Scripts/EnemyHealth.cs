@@ -37,9 +37,12 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        health -= 20;
+        if (other.tag == "Ammo")
+        {
+            health -= 20;
+        }
     }
 
     float CalculateHealth()
