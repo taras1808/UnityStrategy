@@ -22,22 +22,22 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        slider.value = CalculateHealth();
+        
 
-        if(health < maxHealth)
-        {
-            healthBarUI.SetActive(true);
-        }
+        //if(health < maxHealth)
+        //{
+        //    healthBarUI.SetActive(true);
+        //}
 
         if(health <= 0)
         {
             Destroy(gameObject);
         }
 
-        if(health > maxHealth)
-        {
-            health = maxHealth;
-        }
+        //if(health > maxHealth)
+        //{
+        //    health = maxHealth;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +45,7 @@ public class EnemyHealth : MonoBehaviour
         if (other.tag == "Ammo")
         {
             health -= damage;
+            slider.value = CalculateHealth();
         }
     }
 
