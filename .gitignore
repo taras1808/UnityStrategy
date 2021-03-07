@@ -62,3 +62,8 @@ crashlytics-build.properties
 
 .DS_Store
 	
+/.idea/.idea.UnityStrategy/.idea/encodings.xml
+/.idea/.idea.UnityStrategy/.idea/.gitignore
+/.idea/.idea.UnityStrategy/.idea/indexLayout.xml
+/.idea/.idea.UnityStrategy/.idea/riderModule.iml
+/.idea/.idea.UnityStrategy/.idea/vcs.xml
