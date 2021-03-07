@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  damage: 5
+  damage: 25
   healthBarUI: {fileID: 5604072538667323588}
   slider: {fileID: 526577749908478603}
 --- !u!54 &-7579018789483130109
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 5551157017567834667}
   m_HandleRect: {fileID: 0}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
