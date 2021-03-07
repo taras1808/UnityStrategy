@@ -15,13 +15,17 @@ public class BuildSystem : MonoBehaviour
     public float stickTolerance = 1f;
 
     public bool isBuilding = false;
-    private bool pauseBuilding = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKey(KeyCode.K))
         {
-            if (previewGameObject) previewGameObject.transform.Rotate(0, 90f, 0);
+            if (previewGameObject) previewGameObject.transform.Rotate(0, 90f * Time.deltaTime, 0);
+        }
+
+        if (Input.GetKey(KeyCode.L))
+        {
+            if (previewGameObject) previewGameObject.transform.Rotate(0, -90f * Time.deltaTime, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -31,38 +35,33 @@ public class BuildSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && isBuilding)
         {
-            if (previewScript.isSnapped)
-            {
-                StopBuild();
-            }
+            StopBuild();
         }
 
         if (isBuilding)
         {
-            if (pauseBuilding)
-            {
-                float mouseX = Input.GetAxis("Mouse X");
-                float mouseY = Input.GetAxis("Mouse Y");
-
-                if (Mathf.Abs(mouseX) >= stickTolerance || Mathf.Abs(mouseY) >= stickTolerance)
-                {
-                    pauseBuilding = false;
-                }
-            }
-            else
-            {
-                DoBuildRay();
-            }
+            DoBuildRay();
         }
     }
 
     public void NewBuild(GameObject go)
     {
         CancelBuild();
-        previewGameObject = Instantiate(go, Vector3.zero, Quaternion.identity);
-        previewScript = previewGameObject.GetComponent<Preview>();
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, distance, ~layer))
+        {
+            previewGameObject = Instantiate(go, hit.point, Quaternion.identity);
+            previewScript = previewGameObject.GetComponent<Preview>();
+            previewScript.ChangeColor(true);
+        }
+        else
+        {
+            previewGameObject = Instantiate(go, cam.transform.position + cam.transform.forward * 5, Quaternion.identity);
+            previewScript = previewGameObject.GetComponent<Preview>();
+            previewScript.ChangeColor(false);
+        }
         isBuilding = true;
-        pauseBuilding = false;
     }
 
     private void CancelBuild()
@@ -71,7 +70,6 @@ public class BuildSystem : MonoBehaviour
         previewGameObject = null;
         previewScript = null;
         isBuilding = false;
-        pauseBuilding = false;
     }
 
     private void StopBuild()
@@ -80,12 +78,6 @@ public class BuildSystem : MonoBehaviour
         previewGameObject = null;
         previewScript = null;
         isBuilding = false;
-        pauseBuilding = false;
-    }
-
-    public void PauseBuild(bool value)
-    {
-        pauseBuilding = value;
     }
 
     private void DoBuildRay()
@@ -94,14 +86,13 @@ public class BuildSystem : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distance, ~layer))
         {
-            previewGameObject.SetActive(true);
-            float y = hit.point.y + (previewGameObject.transform.localScale.y * 0.5f);
-            Vector3 pos = new Vector3(hit.point.x, y, hit.point.z);
-            previewGameObject.transform.position = pos;
+            previewGameObject.transform.position = hit.point;
+            previewScript.ChangeColor(true);
         }
         else
         {
-            previewGameObject.SetActive(false);
+            previewGameObject.transform.position = cam.transform.position + cam.transform.forward * 5;
+            previewScript.ChangeColor(false);
         }
     }
 }

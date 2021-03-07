@@ -97,9 +97,4 @@ public class PlayerMovement : MonoBehaviour
 
         Controller.Move(Velocity * Time.deltaTime);
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(GroundCheck.position, GroundDistance);
-    }
 }
