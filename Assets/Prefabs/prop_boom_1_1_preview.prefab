@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1068409662801459318}
   - component: {fileID: 673703278774411155}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: prop_boom_1_1_preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 7179308264585739051}
   - component: {fileID: 6061770494479519525}
   - component: {fileID: 8896764701714059994}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cannon Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 3829778702383758708}
   - component: {fileID: 6991224243913698715}
   - component: {fileID: 860508395774521948}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 3515148617324449818}
   - component: {fileID: 1283854099209463599}
   - component: {fileID: 46341672233943083}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fundament
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 3668105099428288113}
   - component: {fileID: 6048629174934218064}
   - component: {fileID: 2210071877462536940}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 6587099346088758520}
   - component: {fileID: 2893840594940837067}
   - component: {fileID: 5603082971256797842}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

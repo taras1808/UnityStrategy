@@ -4,17 +4,34 @@ using UnityEngine;
 
 public class Boom : MonoBehaviour
 {
-    public float disposeTime = 10f;
+    //public float disposeTime = 10f;
 
-    private void Awake()
-    {
-        StartCoroutine(Dispose());
-    }
+    //private void Awake()
+    //{
+    //    StartCoroutine(Dispose());
+    //}
 
-    private IEnumerator Dispose()
+    //private IEnumerator Dispose()
+    //{
+    //    yield return new WaitForSeconds(disposeTime);
+    //    Destroy(gameObject);
+    //}
+
+    public float speed = 10f;
+
+    public Transform enemy;
+
+    private void Update()
     {
-        yield return new WaitForSeconds(disposeTime);
-        Destroy(gameObject);
+        if (enemy)
+        {
+            Vector3 move = (enemy.position - transform.position).normalized;
+            transform.position += move * speed * Time.deltaTime;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

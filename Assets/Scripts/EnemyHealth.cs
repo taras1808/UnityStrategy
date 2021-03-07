@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float health;
-    public float maxHealth;
+    public float health = 100;
+    public float maxHealth = 100;
+
+
+    public float damage = 5;
 
     public GameObject healthBarUI;
     public Slider slider;
@@ -41,7 +44,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.tag == "Ammo")
         {
-            health -= 20;
+            health -= damage;
         }
     }
 

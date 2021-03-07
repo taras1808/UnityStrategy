@@ -47,8 +47,20 @@ public class BuildSystem : MonoBehaviour
     public void NewBuild(GameObject go)
     {
         CancelBuild();
-        previewGameObject = Instantiate(go, cam.transform.position + cam.transform.forward * 5, Quaternion.identity);
-        previewScript = previewGameObject.GetComponent<Preview>();
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, distance, ~layer))
+        {
+            previewGameObject = Instantiate(go, hit.point, Quaternion.identity);
+            previewScript = previewGameObject.GetComponent<Preview>();
+            previewScript.ChangeColor(true);
+        }
+        else
+        {
+            previewGameObject = Instantiate(go, cam.transform.position + cam.transform.forward * 5, Quaternion.identity);
+            previewScript = previewGameObject.GetComponent<Preview>();
+            previewScript.ChangeColor(false);
+        }
         isBuilding = true;
     }
 

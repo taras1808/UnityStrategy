@@ -302,4 +302,4 @@ MonoBehaviour:
   GroundCheck: {fileID: 3457649007831661517}
   PlayerMask:
     serializedVersion: 2
-    m_Bits: 260
+    m_Bits: 256

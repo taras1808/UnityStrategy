@@ -20,9 +20,9 @@ public class Cannon : MonoBehaviour
 
     private bool isFire = false;
 
-    public float fireRate = 5f;
+    public float fireRate = 3f;
 
-    public float fireSpeed = 25f;
+    public float fireSpeed = 100f;
 
     private void Start()
     {
@@ -33,22 +33,23 @@ public class Cannon : MonoBehaviour
     {
         enemies = enemies.Where(e => e != null).ToList();
         if (enemies.Count == 0) { return; }
-        Vector3 position = enemies.OrderBy(e => (e.position - transform.position).magnitude).First().position;
+        Transform enemy = enemies.OrderBy(e => (e.position - transform.position).magnitude).First();
+        Vector3 position = enemy.position;
         Vector3 v = (position - cannon.position).normalized;
         currentRotate = Vector3.SmoothDamp(currentRotate, v, ref velocity, speed);
         rotate.rotation = Quaternion.LookRotation(new Vector3(currentRotate.x, 0, currentRotate.z));
         cannon.rotation = Quaternion.LookRotation(currentRotate);
-        if (!isFire)
+        if (!isFire && Mathf.Abs((v - currentRotate).magnitude) < .1f)
         {
-            StartCoroutine(Fire());
+            StartCoroutine(Fire(enemy));
         }
     }
 
-    private IEnumerator Fire()
+    private IEnumerator Fire(Transform enemy)
     {
         isFire = true;
-        Rigidbody rb = Instantiate(fireBall, cannon.position, cannon.rotation).GetComponent<Rigidbody>();
-        rb.AddForce(cannon.forward * fireSpeed, ForceMode.Impulse);
+        Boom boom = Instantiate(fireBall, cannon.position, cannon.rotation).GetComponent<Boom>();
+        boom.enemy = enemy;
         yield return new WaitForSeconds(fireRate);
         isFire = false;
     }

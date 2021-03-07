@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455150db76afc40e3bc7dda66ccfd088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disposeTime: 5
+  speed: 10
+  enemy: {fileID: 0}
