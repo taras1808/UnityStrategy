@@ -10,34 +10,55 @@ public class Preview : MonoBehaviour
     public Material goodMat;
     public Material badMat;
 
-    private bool IsGood = false;
+    public bool IsGood = false;
+
+    private int collisions = 0;
 
     private void Awake()
     {
         renderer = GetComponentsInChildren<MeshRenderer>();
-        ChangeColor(true);
     }
 
     public void Place()
     {
-        if (IsGood)
+        if (IsGood && collisions == 0)
         {
             Instantiate(prefab, transform.position, transform.rotation);
         }
         Destroy(gameObject);
     }
 
-    public void ChangeColor(bool isGood)
+    public void ChangeColor()
     {
         for (int i = 0; i < renderer.Length; i++)
         {
             Material[] materials = new Material[renderer[i].materials.Length];
             for (int j = 0; j < materials.Length; j++)
             {
-                materials[j] = isGood ? goodMat : badMat;
+                materials[j] = IsGood && collisions == 0 ? goodMat : badMat;
             }
             renderer[i].materials = materials;
         }
-        IsGood = isGood;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.isTrigger && other.tag == Tags.Cannon)
+        {
+            collisions++;
+            ChangeColor();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.isTrigger && other.tag == Tags.Cannon)
+        {
+            collisions--;
+            if (collisions == 0)
+            {
+                ChangeColor();
+            }
+        }
     }
 }

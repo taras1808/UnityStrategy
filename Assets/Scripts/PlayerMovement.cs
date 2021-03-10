@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform GroundCheck;
     [SerializeField]
-    private LayerMask PlayerMask;
+    private LayerMask GroundMask;
 
     private Vector3 Velocity;
     private bool IsGrounded;
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SurvivalModeMovement(ref Vector3 move)
     {
-        IsGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, ~PlayerMask);
+        IsGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask, QueryTriggerInteraction.Ignore);
 
         if (Input.GetKey(KeyCode.LeftShift))
         {

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3457649007831661517}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,8 +42,7 @@ GameObject:
   - component: {fileID: 3457649008350146228}
   - component: {fileID: 3457649008350146229}
   - component: {fileID: 3457649008350146226}
-  - component: {fileID: 3457649008350146225}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -129,23 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 300
   playerBody: {fileID: 3457649009630070963}
---- !u!114 &3457649008350146225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3457649008350146230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8afd93e676d9cb347a4ad15547bf59f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  Distance: 3
-  CurrentSelectable: {fileID: 0}
 --- !u!1 &3457649008451764653
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +139,7 @@ GameObject:
   - component: {fileID: 3457649008451764652}
   - component: {fileID: 3457649008451764650}
   - component: {fileID: 3457649008451764651}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +218,7 @@ GameObject:
   - component: {fileID: 3457649009630070963}
   - component: {fileID: 3457649009630070964}
   - component: {fileID: 3457649009630070962}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,6 +282,6 @@ MonoBehaviour:
   JumpHeight: 1.2
   GroundDistance: 0.375
   GroundCheck: {fileID: 3457649007831661517}
-  PlayerMask:
+  GroundMask:
     serializedVersion: 2
     m_Bits: 256

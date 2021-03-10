@@ -1,18 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BuildSystem : MonoBehaviour
 {
-
-    public Camera cam;
     public LayerMask layer;
     private GameObject previewGameObject = null;
     private Preview previewScript = null;
 
     public float distance = 25f;
-
-    public float stickTolerance = 1f;
 
     public bool isBuilding = false;
 
@@ -47,19 +41,21 @@ public class BuildSystem : MonoBehaviour
     public void NewBuild(GameObject go)
     {
         CancelBuild();
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, distance, ~layer))
+        if (Physics.Raycast(ray, out hit, distance, layer, QueryTriggerInteraction.Ignore))
         {
             previewGameObject = Instantiate(go, hit.point, Quaternion.identity);
             previewScript = previewGameObject.GetComponent<Preview>();
-            previewScript.ChangeColor(true);
+            previewScript.IsGood = true;
+            previewScript.ChangeColor();
         }
         else
         {
-            previewGameObject = Instantiate(go, cam.transform.position + cam.transform.forward * 5, Quaternion.identity);
+            previewGameObject = Instantiate(go, Camera.main.transform.position + Camera.main.transform.forward * 5, Quaternion.identity);
             previewScript = previewGameObject.GetComponent<Preview>();
-            previewScript.ChangeColor(false);
+            previewScript.IsGood = false;
+            previewScript.ChangeColor();
         }
         isBuilding = true;
     }
@@ -82,17 +78,19 @@ public class BuildSystem : MonoBehaviour
 
     private void DoBuildRay()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, distance, ~layer))
+        if (Physics.Raycast(ray, out hit, distance, layer, QueryTriggerInteraction.Ignore))
         {
             previewGameObject.transform.position = hit.point;
-            previewScript.ChangeColor(true);
+            previewScript.IsGood = true;
+            previewScript.ChangeColor();
         }
         else
         {
-            previewGameObject.transform.position = cam.transform.position + cam.transform.forward * 5;
-            previewScript.ChangeColor(false);
+            previewGameObject.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5;
+            previewScript.IsGood = false;
+            previewScript.ChangeColor();
         }
     }
 }

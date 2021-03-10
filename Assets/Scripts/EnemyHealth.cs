@@ -8,7 +8,6 @@ public class EnemyHealth : MonoBehaviour
     public float health = 100;
     public float maxHealth = 100;
 
-
     public float damage = 5;
 
     public GameObject healthBarUI;
@@ -22,27 +21,15 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        
-
-        //if(health < maxHealth)
-        //{
-        //    healthBarUI.SetActive(true);
-        //}
-
         if(health <= 0)
         {
             Destroy(gameObject);
         }
-
-        //if(health > maxHealth)
-        //{
-        //    health = maxHealth;
-        //}
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Ammo")
+        if (other.tag == Tags.Ammunition)
         {
             health -= damage;
             slider.value = CalculateHealth();
