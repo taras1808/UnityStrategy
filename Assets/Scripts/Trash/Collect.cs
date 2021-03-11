@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 
 public class Collect : MonoBehaviour
 {
     public static float Money;
-    public Text TextMoney;
+    private Text TextMoney;
 
     void Start()
     {

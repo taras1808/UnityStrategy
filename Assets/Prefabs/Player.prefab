@@ -123,11 +123,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3457649008350146230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d2d662d0c63484fb26c74ce677de2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 051c2bb0ff7924a8b86e245379a3819c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 300
-  playerBody: {fileID: 3457649009630070963}
+  MouseSensitivity: 500
+  PlayerBody: {fileID: 3457649009630070963}
 --- !u!1 &3457649008451764653
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3457649009630070965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b46cae1391f4513b6dbdb3429772b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e94a9df48be91480ebc0df4aff5bf050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GameModeManager: {fileID: 0}
@@ -278,7 +278,7 @@ MonoBehaviour:
   SprintSpeedMultiplier: 2
   CreativeModeSpeedMultiplier: 2
   CreativeModeFlySpeed: 4
-  Gravity: -1.62
+  Gravity: -9.8
   JumpHeight: 1.2
   GroundDistance: 0.375
   GroundCheck: {fileID: 3457649007831661517}

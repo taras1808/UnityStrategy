@@ -651,10 +651,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5632615324389979311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 940771af02c659c48bf4651f872e0be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c7d57749f64d42c2b1e8e20ef4017a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextMoney: {fileID: 5632615324389979298}
+  TextMoney: {fileID: 0}
 --- !u!1 &5632615324477856214
 GameObject:
   m_ObjectHideFlags: 0
