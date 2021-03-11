@@ -41,14 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7905195903054627227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224cdf827a9bc49df9bb57ad4dbbf3a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f92f5c782ff84e3089517261dfe756a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 256
-  distance: 25
-  isBuilding: 0
+  CannonPreview: {fileID: 8045602535979219906, guid: dcd9d1add52044b35abaa69944bc33ee,
+    type: 3}
 --- !u!114 &994191064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,8 +55,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7905195903054627227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2d4035206a224ab59dcd8c9f70056d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 320b3ba9941a645ca8ac85cc3f976c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannon: {fileID: 403090041822274252, guid: a483e4cf922044973a560f82463c7164, type: 3}
-  buildSystem: {fileID: 7905195903054627226}
+  distance: 25
+  BuildLayer:
+    serializedVersion: 2
+    m_Bits: 256

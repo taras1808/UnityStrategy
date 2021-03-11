@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Preview : MonoBehaviour
+public class PreviewScript : MonoBehaviour
 {
     public GameObject prefab;
 
@@ -12,7 +10,7 @@ public class Preview : MonoBehaviour
 
     public bool IsGood = false;
 
-    private int collisions = 0;
+    private int Collisions = 0;
 
     private void Awake()
     {
@@ -21,7 +19,7 @@ public class Preview : MonoBehaviour
 
     public void Place()
     {
-        if (IsGood && collisions == 0)
+        if (IsGood && Collisions == 0)
         {
             Instantiate(prefab, transform.position, transform.rotation);
         }
@@ -35,7 +33,7 @@ public class Preview : MonoBehaviour
             Material[] materials = new Material[renderer[i].materials.Length];
             for (int j = 0; j < materials.Length; j++)
             {
-                materials[j] = IsGood && collisions == 0 ? goodMat : badMat;
+                materials[j] = IsGood && Collisions == 0 ? goodMat : badMat;
             }
             renderer[i].materials = materials;
         }
@@ -43,19 +41,19 @@ public class Preview : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.isTrigger && other.tag == Tags.Cannon)
+        if (!other.isTrigger && (other.tag == Tags.Cannon || other.tag == Tags.Enemy))
         {
-            collisions++;
+            Collisions++;
             ChangeColor();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.isTrigger && other.tag == Tags.Cannon)
+        if (!other.isTrigger && (other.tag == Tags.Cannon || other.tag == Tags.Enemy))
         {
-            collisions--;
-            if (collisions == 0)
+            Collisions--;
+            if (Collisions == 0)
             {
                 ChangeColor();
             }
