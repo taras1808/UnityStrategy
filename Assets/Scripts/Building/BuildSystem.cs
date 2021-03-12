@@ -3,7 +3,7 @@
 public class BuildSystem : MonoBehaviour
 {
     [SerializeField]
-    private float distance = 25f;
+    private float Distance = 25f;
     [SerializeField]
     private LayerMask BuildLayer;
 
@@ -46,7 +46,7 @@ public class BuildSystem : MonoBehaviour
         CancelBuild();
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, distance, BuildLayer, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out hit, Distance, BuildLayer, QueryTriggerInteraction.Ignore))
         {
             PreviewGameObject = Instantiate(CannonPreview, hit.point, Quaternion.identity);
             PreviewScript = PreviewGameObject.GetComponent<PreviewScript>();
@@ -83,7 +83,7 @@ public class BuildSystem : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, distance, BuildLayer, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out hit, Distance, BuildLayer, QueryTriggerInteraction.Ignore))
         {
             PreviewGameObject.transform.position = hit.point;
             PreviewScript.IsGood = true;
