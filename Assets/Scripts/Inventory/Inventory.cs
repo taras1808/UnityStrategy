@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        InventoryUI = GameObject.Find("Canvas").transform.Find("InventoryUI").GetComponent<InventoryUI>();
+        InventoryUI = GameObject.Find("InventoryUI").GetComponent<InventoryUI>();
         InventoryUI.gameObject.SetActive(false);
     }
 
