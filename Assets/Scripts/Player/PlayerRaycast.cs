@@ -28,8 +28,9 @@ public class PlayerRaycast : MonoBehaviour
             
             EnergyGenerator generator = t.GetComponent<EnergyGenerator>();
             CannonEnergy energy = t.GetComponent<CannonEnergy>();
+            EnergyStorage storage = t.GetComponent<EnergyStorage>();
 
-            if (generator)
+            if (generator || storage)
             {
                 showEnergyGenerator.SetActive(true);
             }
@@ -42,14 +43,17 @@ public class PlayerRaycast : MonoBehaviour
             {
                 if (generator)
                 {
-                    generator.GetEnergy(25);
+                    generator.Get(25);
                 }
                 else if (energy)
                 {
-                    energy.Charge(25);
+                    energy.Put(25);
+                }
+                else if (storage)
+                {
+                    storage.Get(25);
                 }
             }
-    
         }
     }
 }
