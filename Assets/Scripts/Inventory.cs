@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public bool showingInventory = false;
-    public InventoryUI inventroy;
+    public bool ShowingInventory = false;
+    private InventoryUI InventoryUI;
 
     private void Start()
     {
-        inventroy.gameObject.SetActive(false);
+        InventoryUI = GameObject.Find("Canvas").transform.Find("InventoryUI").GetComponent<InventoryUI>();
+        InventoryUI.gameObject.SetActive(false);
     }
 
     void Update()
     {
         if (!Input.GetKeyDown(KeyCode.I)) return;
+
+        ShowingInventory = !ShowingInventory;
         
-        showingInventory = !showingInventory;
-        
-        Cursor.lockState = showingInventory ? CursorLockMode.None : CursorLockMode.Locked;
-        inventroy.gameObject.SetActive(showingInventory);
+        Cursor.lockState = ShowingInventory ? CursorLockMode.None : CursorLockMode.Locked;
+        InventoryUI.gameObject.SetActive(ShowingInventory);
     }
 }

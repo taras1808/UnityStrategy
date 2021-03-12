@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 300
   playerBody: {fileID: 3457649009630070963}
+  inventory: {fileID: 0}
 --- !u!114 &3457649008350146225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +237,7 @@ GameObject:
   - component: {fileID: 3457649009630070963}
   - component: {fileID: 3457649009630070964}
   - component: {fileID: 3457649009630070962}
+  - component: {fileID: 989124213}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -302,4 +304,17 @@ MonoBehaviour:
   GroundCheck: {fileID: 3457649007831661517}
   PlayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 260
+--- !u!114 &989124213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3457649009630070965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff084309bc5730043af24f876915692e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowingInventory: 0
