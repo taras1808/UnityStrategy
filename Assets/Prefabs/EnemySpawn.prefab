@@ -40,8 +40,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 706058093056645796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c60aa33f68f412da74a18e9a32b05b, type: 3}
+  m_Script: {fileID: 11500000, guid: e078021e857b94cf1bd33863be9396ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 2788001290840548149, guid: 33f1be6fc7d35437da26d0ffe99f859b, type: 3}
-  spawnTime: 5
+  spawnTime: 15

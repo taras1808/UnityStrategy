@@ -41,16 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7905195903054627227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224cdf827a9bc49df9bb57ad4dbbf3a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 95daf0164d65242bbbe26a4cce2385ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  layer:
-    serializedVersion: 2
-    m_Bits: 768
-  distance: 10
-  stickTolerance: 1
-  isBuilding: 0
+  CannonPreview: {fileID: 8045602535979219906, guid: dcd9d1add52044b35abaa69944bc33ee,
+    type: 3}
 --- !u!114 &994191064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,11 +55,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7905195903054627227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2d4035206a224ab59dcd8c9f70056d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 320b3ba9941a645ca8ac85cc3f976c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foundation: {fileID: 862986546442142971, guid: f0aa956b304b64ffd86c2ab0baae01c5,
-    type: 3}
-  wall: {fileID: 1936925327214600793, guid: 27bc19a65928d4e44b54833dafa93a04, type: 3}
-  ceiling: {fileID: 365623648676040334, guid: 0aafe9cd1c0664a0d88eadff2be239dd, type: 3}
-  buildSystem: {fileID: 7905195903054627226}
+  distance: 25
+  BuildLayer:
+    serializedVersion: 2
+    m_Bits: 256

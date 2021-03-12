@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7764736552057254419}
   - component: {fileID: -4194807588897098501}
   - component: {fileID: 8968206587526650283}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireBall
-  m_TagString: Ammo
+  m_TagString: Ammunition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3868680515350571918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455150db76afc40e3bc7dda66ccfd088, type: 3}
+  m_Script: {fileID: 11500000, guid: f925535951d8f49839056bc3a0ad1296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  enemy: {fileID: 0}
+  Speed: 10
+  Target: {fileID: 0}

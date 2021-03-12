@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3457649007831661517}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,8 +42,7 @@ GameObject:
   - component: {fileID: 3457649008350146228}
   - component: {fileID: 3457649008350146229}
   - component: {fileID: 3457649008350146226}
-  - component: {fileID: 3457649008350146225}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -124,29 +123,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3457649008350146230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d2d662d0c63484fb26c74ce677de2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 051c2bb0ff7924a8b86e245379a3819c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 300
-  playerBody: {fileID: 3457649009630070963}
-  inventory: {fileID: 0}
---- !u!114 &3457649008350146225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3457649008350146230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8afd93e676d9cb347a4ad15547bf59f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  Distance: 3
-  CurrentSelectable: {fileID: 0}
+  MouseSensitivity: 500
+  PlayerBody: {fileID: 3457649009630070963}
 --- !u!1 &3457649008451764653
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +139,7 @@ GameObject:
   - component: {fileID: 3457649008451764652}
   - component: {fileID: 3457649008451764650}
   - component: {fileID: 3457649008451764651}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,8 +218,7 @@ GameObject:
   - component: {fileID: 3457649009630070963}
   - component: {fileID: 3457649009630070964}
   - component: {fileID: 3457649009630070962}
-  - component: {fileID: 989124213}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +269,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3457649009630070965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b46cae1391f4513b6dbdb3429772b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e94a9df48be91480ebc0df4aff5bf050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GameModeManager: {fileID: 0}
@@ -298,23 +278,10 @@ MonoBehaviour:
   SprintSpeedMultiplier: 2
   CreativeModeSpeedMultiplier: 2
   CreativeModeFlySpeed: 4
-  Gravity: -1.62
+  Gravity: -9.8
   JumpHeight: 1.2
   GroundDistance: 0.375
   GroundCheck: {fileID: 3457649007831661517}
-  PlayerMask:
+  GroundMask:
     serializedVersion: 2
-    m_Bits: 260
---- !u!114 &989124213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3457649009630070965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff084309bc5730043af24f876915692e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowingInventory: 0
+    m_Bits: 256
