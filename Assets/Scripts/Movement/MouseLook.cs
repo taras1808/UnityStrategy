@@ -6,6 +6,7 @@ public class MouseLook : MonoBehaviour
     public float MouseSensitivity = 500f;
 
     public Transform PlayerBody;
+    public Inventory Inventory;
 
     float XRotation = 0f;
 
@@ -16,6 +17,8 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        if (Inventory.ShowingInventory) return;
+        
         float mouseX = Input.GetAxis("Mouse X") * MouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
 
