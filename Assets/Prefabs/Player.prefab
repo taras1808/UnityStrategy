@@ -142,7 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d650c44f0be664efeab402a28ceebe37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RaycastDistance: 3
+  RaycastDistance: 5
+  RaycastLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  showEnergyCannon: {fileID: 0}
+  showEnergyGenerator: {fileID: 0}
 --- !u!1 &3457649008451764653
 GameObject:
   m_ObjectHideFlags: 0
