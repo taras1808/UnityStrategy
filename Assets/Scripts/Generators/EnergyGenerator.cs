@@ -12,6 +12,7 @@ public class EnergyGenerator : MonoBehaviour, ITransfer
     [SerializeField]
     private float EnergyPerSecond = 25;
 
+    private int EnergyStorageIndex = 0;
     private List<IStorage> EnergyStorages = new List<IStorage>();
 
     private Slider SliderUI;
@@ -100,13 +101,9 @@ public class EnergyGenerator : MonoBehaviour, ITransfer
             return;
         }
 
-        foreach (IStorage storage in EnergyStorages)
+        if (EnergyStorages.Count > 0)
         {
-            if (Energy == 0)
-            {
-                return;
-            }
-
+            IStorage storage = EnergyStorages[EnergyStorageIndex];
             if (storage.HasSpace())
             {
                 bool startGanerating = Energy == MaxEnergy;
@@ -117,25 +114,30 @@ public class EnergyGenerator : MonoBehaviour, ITransfer
                     StartCoroutine(GenerateEnergy());
                 }
             }
+            if (++EnergyStorageIndex >= EnergyStorages.Count)
+            {
+                EnergyStorageIndex = 0;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Transform t = other.transform;
-        bool isStorage = t.tag == Tags.Storage;
-        while (t.parent != null)
+        if (other.isTrigger)
         {
-            t = t.parent;
-            if (t.tag == Tags.Storage)
-            {
-                isStorage = true;
-                break;
-            }
+            return;
         }
-        if (isStorage)
+        Transform tStorage = SearchSystem.FindUpByTags(
+            other.transform,
+            new List<string>() { Tags.Storage, Tags.Cannon }
+        );
+        if (tStorage)
         {
-            EnergyStorages.Add(t.GetComponent<IStorage>());
+            IStorage storage = tStorage.GetComponent<IStorage>();
+            if (!EnergyStorages.Contains(storage))
+            {
+                EnergyStorages.Add(storage);
+            }
         }
     }
 }

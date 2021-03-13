@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class CannonEnergy : MonoBehaviour, ITransfer
+public class CannonEnergy : MonoBehaviour, IStorage
 {
     [SerializeField]
     private float MaxEnergy = 100f;

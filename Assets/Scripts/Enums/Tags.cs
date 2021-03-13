@@ -1,4 +1,4 @@
-﻿public static class Tags
+﻿public class Tags
 {
     public readonly static string Ammunition = "Ammunition";
     public readonly static string Cannon = "Cannon";

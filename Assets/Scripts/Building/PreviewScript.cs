@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PreviewScript : MonoBehaviour
 {
@@ -41,7 +42,12 @@ public class PreviewScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.isTrigger && (other.tag == Tags.Cannon || other.tag == Tags.Enemy))
+        if (!other.isTrigger &&
+            SearchSystem.FindUpByTags(
+                other.transform,
+                new List<string>() { Tags.Cannon, Tags.Enemy }
+            )
+        )
         {
             Collisions++;
             ChangeColor();
@@ -50,7 +56,12 @@ public class PreviewScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.isTrigger && (other.tag == Tags.Cannon || other.tag == Tags.Enemy))
+        if (!other.isTrigger &&
+            SearchSystem.FindUpByTags(
+                other.transform,
+                new List<string>() { Tags.Cannon, Tags.Enemy }
+            )
+        )
         {
             Collisions--;
             if (Collisions == 0)

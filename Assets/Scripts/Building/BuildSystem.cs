@@ -7,7 +7,6 @@ public class BuildSystem : MonoBehaviour
     [SerializeField]
     private LayerMask BuildLayer;
 
-
     private GameObject PreviewGameObject = null;
     private PreviewScript PreviewScript = null;
 
