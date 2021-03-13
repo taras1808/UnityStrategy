@@ -25,33 +25,21 @@ public class PlayerRaycast : MonoBehaviour
             {
                 t = t.parent;
             }
-            
-            EnergyGenerator generator = t.GetComponent<EnergyGenerator>();
-            CannonEnergy energy = t.GetComponent<CannonEnergy>();
-            EnergyStorage storage = t.GetComponent<EnergyStorage>();
 
-            if (generator || storage)
-            {
+            ITransfer transfer = t.GetComponent<ITransfer>();
+
+            if (transfer != null) {
                 showEnergyGenerator.SetActive(true);
-            }
-            else if (energy)
-            {
                 showEnergyCannon.SetActive(true);
-            }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (generator)
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    generator.Get(25);
+                    transfer.Get(25);
                 }
-                else if (energy)
+
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    energy.Put(25);
-                }
-                else if (storage)
-                {
-                    storage.Get(25);
+                    transfer.Put(25);
                 }
             }
         }
