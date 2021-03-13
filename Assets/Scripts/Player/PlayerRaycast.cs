@@ -11,6 +11,9 @@ public class PlayerRaycast : MonoBehaviour
     public GameObject showEnergyCannon;
     public GameObject showEnergyGenerator;
 
+    [SerializeField]
+    private PlayerEnergyStorage PlayerEnergyStorage;
+
     void Update()
     {
         showEnergyCannon.SetActive(false);
@@ -27,13 +30,13 @@ public class PlayerRaycast : MonoBehaviour
             }
             
             EnergyGenerator generator = t.GetComponent<EnergyGenerator>();
-            CannonEnergy energy = t.GetComponent<CannonEnergy>();
+            CannonEnergy cannon = t.GetComponent<CannonEnergy>();
 
             if (generator)
             {
                 showEnergyGenerator.SetActive(true);
             }
-            else if (energy)
+            else if (cannon)
             {
                 showEnergyCannon.SetActive(true);
             }
@@ -42,11 +45,11 @@ public class PlayerRaycast : MonoBehaviour
             {
                 if (generator)
                 {
-                    generator.GetEnergy(25);
+                    PlayerEnergyStorage.GetEnergyFrom(generator);
                 }
-                else if (energy)
+                else if (cannon)
                 {
-                    energy.Charge(25);
+                    PlayerEnergyStorage.PutEnergyTo(cannon);
                 }
             }
     
