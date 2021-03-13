@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerEnergyStorage : MonoBehaviour
@@ -20,7 +18,7 @@ public class PlayerEnergyStorage : MonoBehaviour
         EnergyCount.text = Energy.ToString();
     }
 
-    public void GetEnergyFrom(ITransfer energyGenerator)
+    public void GetEnergyFrom(IEnergyTransfer energyGenerator)
     {
         if (Energy < MaxEnergy)
         {
@@ -29,7 +27,7 @@ public class PlayerEnergyStorage : MonoBehaviour
         }
     }
 
-    public void PutEnergyTo(ITransfer cannonEnergy)
+    public void PutEnergyTo(IEnergyTransfer cannonEnergy)
     {
         if (Energy > 0)
         {

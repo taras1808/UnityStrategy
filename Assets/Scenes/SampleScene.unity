@@ -134,6 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7573cd62f7e894018a908a659e2e0aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &561618815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 561618815, guid: 36640960756a042b8aeabebe38bac3da,
+    type: 3}
+  m_PrefabInstance: {fileID: 5632615323434417736}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &595468100 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5632615322914971916, guid: 36640960756a042b8aeabebe38bac3da,
@@ -250,6 +256,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &751922233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 751922233, guid: 36640960756a042b8aeabebe38bac3da,
+    type: 3}
+  m_PrefabInstance: {fileID: 5632615323434417736}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &996091405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 996091405, guid: 36640960756a042b8aeabebe38bac3da,
@@ -335,6 +347,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 924892e230e1242818af08b2705892b0, type: 3}
+--- !u!114 &1585718258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1585718258, guid: 36640960756a042b8aeabebe38bac3da,
+    type: 3}
+  m_PrefabInstance: {fileID: 5632615323434417736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119307283 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2119307283, guid: 36640960756a042b8aeabebe38bac3da,
@@ -497,6 +521,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 711150436, guid: f0e1ba9b22b674ef2b009486a4f23252, type: 3}
+      propertyPath: GetOreText
+      value: 
+      objectReference: {fileID: 561618815}
+    - target: {fileID: 711150436, guid: f0e1ba9b22b674ef2b009486a4f23252, type: 3}
+      propertyPath: PutOreText
+      value: 
+      objectReference: {fileID: 751922233}
+    - target: {fileID: 711150436, guid: f0e1ba9b22b674ef2b009486a4f23252, type: 3}
       propertyPath: showEnergyCannon
       value: 
       objectReference: {fileID: 996091405}
@@ -504,6 +536,10 @@ PrefabInstance:
       propertyPath: showEnergyGenerator
       value: 
       objectReference: {fileID: 2119307283}
+    - target: {fileID: 1986778134, guid: f0e1ba9b22b674ef2b009486a4f23252, type: 3}
+      propertyPath: OreCount
+      value: 
+      objectReference: {fileID: 1585718258}
     - target: {fileID: 3457649009630070962, guid: f0e1ba9b22b674ef2b009486a4f23252,
         type: 3}
       propertyPath: GameModeManager

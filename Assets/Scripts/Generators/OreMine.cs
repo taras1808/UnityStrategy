@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OreMine : MonoBehaviour, ITransfer
+public class OreMine : MonoBehaviour, IOreTransfer
 {
     [SerializeField]
     private float MaxCapacity = 250;
