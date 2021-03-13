@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerRaycast : MonoBehaviour
 {
@@ -10,6 +10,9 @@ public class PlayerRaycast : MonoBehaviour
 
     public GameObject showEnergyCannon;
     public GameObject showEnergyGenerator;
+
+    [SerializeField]
+    private PlayerEnergyStorage PlayerEnergyStorage;
 
     void Update()
     {
@@ -34,12 +37,12 @@ public class PlayerRaycast : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    transfer.Get(25);
+                    PlayerEnergyStorage.GetEnergyFrom(generator);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    transfer.Put(25);
+                    PlayerEnergyStorage.PutEnergyTo(cannon);
                 }
             }
         }
