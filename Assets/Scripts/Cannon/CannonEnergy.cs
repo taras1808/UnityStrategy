@@ -26,12 +26,14 @@ public class CannonEnergy : MonoBehaviour
         SliderUI.value = Energy / MaxEnergy;
     }
 
-    public void Charge(int count)
+    public bool Charge(float count)
     {
         if (Energy < MaxEnergy)
         {
             Energy += count;
             SliderUI.value = Energy / MaxEnergy;
+            return true;
         }
+        return false;
     }
 }
