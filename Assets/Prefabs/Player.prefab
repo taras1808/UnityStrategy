@@ -148,6 +148,7 @@ MonoBehaviour:
     m_Bits: 512
   showEnergyCannon: {fileID: 0}
   showEnergyGenerator: {fileID: 0}
+  PlayerEnergyStorage: {fileID: 5694719380199598706}
 --- !u!1 &3457649008451764653
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +240,7 @@ GameObject:
   - component: {fileID: 3457649009630070964}
   - component: {fileID: 3457649009630070962}
   - component: {fileID: 1530393288}
+  - component: {fileID: 5694719380199598706}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -319,3 +321,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowingInventory: 0
+--- !u!114 &5694719380199598706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3457649009630070965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47949f8447a3d33438a469b768773f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxEnergy: 100
+  Energy: 0
+  EnergyConsume: 25
+  EnergyCount: {fileID: 0}

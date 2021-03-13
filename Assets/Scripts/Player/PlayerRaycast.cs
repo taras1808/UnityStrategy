@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerRaycast : MonoBehaviour
 {
@@ -28,31 +28,23 @@ public class PlayerRaycast : MonoBehaviour
             {
                 t = t.parent;
             }
-            
-            EnergyGenerator generator = t.GetComponent<EnergyGenerator>();
-            CannonEnergy cannon = t.GetComponent<CannonEnergy>();
 
-            if (generator)
-            {
+            ITransfer transfer = t.GetComponent<ITransfer>();
+
+            if (transfer != null) {
                 showEnergyGenerator.SetActive(true);
-            }
-            else if (cannon)
-            {
                 showEnergyCannon.SetActive(true);
-            }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (generator)
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    PlayerEnergyStorage.GetEnergyFrom(generator);
+                    PlayerEnergyStorage.GetEnergyFrom(transfer);
                 }
-                else if (cannon)
+
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    PlayerEnergyStorage.PutEnergyTo(cannon);
+                    PlayerEnergyStorage.PutEnergyTo(transfer);
                 }
             }
-    
         }
     }
 }

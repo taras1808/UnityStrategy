@@ -1,29 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-[DisallowMultipleComponent]
-public class CannonEnergy : MonoBehaviour, ITransfer
+public class EnergyStorage : MonoBehaviour, IStorage
 {
     [SerializeField]
-    private float MaxEnergy = 100f;
+    private float MaxEnergy = 1000;
     [SerializeField]
-    private float Energy = 100f;
-    [SerializeField]
-    private float EnergyConsume = 25f;
+    private float Energy = 0;
 
     private Slider SliderUI;
-
-    public bool IsActive => Energy > 0;
 
     private void Start()
     {
         SliderUI = transform.Find("Canvas").Find("EnergySliderUI").GetComponent<Slider>();
         SliderUI.value = Energy / MaxEnergy;
-    }
-
-    public void Consume()
-    {
-        Get(EnergyConsume);
     }
 
     public bool HasSpace()

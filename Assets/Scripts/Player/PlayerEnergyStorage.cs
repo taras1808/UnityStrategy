@@ -20,22 +20,27 @@ public class PlayerEnergyStorage : MonoBehaviour
         EnergyCount.text = Energy.ToString();
     }
 
-    public void GetEnergyFrom(EnergyGenerator energyGenerator)
+    public void GetEnergyFrom(ITransfer energyGenerator)
     {
-        if (Energy < MaxEnergy && energyGenerator.GetEnergy(EnergyConsume))
+        if (Energy < MaxEnergy)
         {
-            Energy += EnergyConsume;
+            Energy += energyGenerator.Get(EnergyConsume);
             EnergyCount.text = Energy.ToString();
         }
     }
 
-    public void PutEnergyTo(CannonEnergy cannonEnergy)
+    public void PutEnergyTo(ITransfer cannonEnergy)
     {
         if (Energy > 0)
         {
-            if (cannonEnergy.Charge(EnergyConsume))
+            if (Energy >= EnergyConsume)
             {
-                Energy -= EnergyConsume;
+                Energy -= cannonEnergy.Put(EnergyConsume);
+                EnergyCount.text = Energy.ToString();
+            }
+            else
+            {
+                Energy -= cannonEnergy.Put(Energy);
                 EnergyCount.text = Energy.ToString();
             }
         }
