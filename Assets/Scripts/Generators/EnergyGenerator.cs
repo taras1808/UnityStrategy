@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnergyGenerator : MonoBehaviour, ITransfer
+public class EnergyGenerator : MonoBehaviour, IEnergyTransfer
 {
     [SerializeField]
     private float MaxEnergy = 250;

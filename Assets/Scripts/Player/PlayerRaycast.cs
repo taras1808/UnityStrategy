@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerRaycast : MonoBehaviour
 {
@@ -11,13 +12,20 @@ public class PlayerRaycast : MonoBehaviour
     public GameObject showEnergyCannon;
     public GameObject showEnergyGenerator;
 
+    public GameObject GetOreText;
+    public GameObject PutOreText;
+
     [SerializeField]
     private PlayerEnergyStorage PlayerEnergyStorage;
+    [SerializeField]
+    private PlayerOreStorage PlayerOreStorage;
 
     void Update()
     {
         showEnergyCannon.SetActive(false);
         showEnergyGenerator.SetActive(false);
+        GetOreText.SetActive(false);
+        PutOreText.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, RaycastDistance, RaycastLayer, QueryTriggerInteraction.Ignore))
@@ -29,20 +37,36 @@ public class PlayerRaycast : MonoBehaviour
                 t = t.parent;
             }
 
-            ITransfer transfer = t.GetComponent<ITransfer>();
+            IEnergyTransfer energyTransfer = t.GetComponent<IEnergyTransfer>();
+            IOreTransfer oreTransfer = t.GetComponent<IOreTransfer>();
 
-            if (transfer != null) {
+            if (energyTransfer != null) {
                 showEnergyGenerator.SetActive(true);
                 showEnergyCannon.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    PlayerEnergyStorage.GetEnergyFrom(transfer);
+                    PlayerEnergyStorage.GetEnergyFrom(energyTransfer);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    PlayerEnergyStorage.PutEnergyTo(transfer);
+                    PlayerEnergyStorage.PutEnergyTo(energyTransfer);
+                }
+            }
+            else if (oreTransfer != null)
+            {
+                GetOreText.SetActive(true);
+                PutOreText.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    PlayerOreStorage.GetOreFrom(oreTransfer);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    PlayerOreStorage.PutOreTo(oreTransfer);
                 }
             }
         }

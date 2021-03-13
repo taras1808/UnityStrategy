@@ -148,7 +148,10 @@ MonoBehaviour:
     m_Bits: 512
   showEnergyCannon: {fileID: 0}
   showEnergyGenerator: {fileID: 0}
+  GetOreText: {fileID: 0}
+  PutOreText: {fileID: 0}
   PlayerEnergyStorage: {fileID: 5694719380199598706}
+  PlayerOreStorage: {fileID: 1986778134}
 --- !u!1 &3457649008451764653
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +244,7 @@ GameObject:
   - component: {fileID: 3457649009630070962}
   - component: {fileID: 1530393288}
   - component: {fileID: 5694719380199598706}
+  - component: {fileID: 1986778134}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -337,3 +341,19 @@ MonoBehaviour:
   Energy: 0
   EnergyConsume: 25
   EnergyCount: {fileID: 0}
+--- !u!114 &1986778134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3457649009630070965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c54365df1ed34c3baf8333097397e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxCapacity: 100
+  Quantity: 0
+  OreConsume: 25
+  OreCount: {fileID: 0}

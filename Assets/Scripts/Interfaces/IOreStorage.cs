@@ -1,3 +1,3 @@
-﻿public interface IOreStorage: IStorage
+﻿public interface IOreStorage: IStorage, IOreTransfer
 {
 }

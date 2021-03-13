@@ -1,3 +1,3 @@
-﻿public interface IEnergyStorage: IStorage
+﻿public interface IEnergyStorage: IStorage, IEnergyTransfer
 {
 }
