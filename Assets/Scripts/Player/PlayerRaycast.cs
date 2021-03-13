@@ -37,12 +37,12 @@ public class PlayerRaycast : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    PlayerEnergyStorage.GetEnergyFrom(generator);
+                    PlayerEnergyStorage.GetEnergyFrom(transfer);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    PlayerEnergyStorage.PutEnergyTo(cannon);
+                    PlayerEnergyStorage.PutEnergyTo(transfer);
                 }
             }
         }

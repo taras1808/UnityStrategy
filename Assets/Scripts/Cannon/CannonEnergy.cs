@@ -62,6 +62,5 @@ public class CannonEnergy : MonoBehaviour, ITransfer
             SliderUI.value = Energy / MaxEnergy;
             return freeSpace;
         }
-        return false;
     }
 }
