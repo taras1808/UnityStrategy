@@ -13,7 +13,7 @@ public class EnergyGenerator : MonoBehaviour, ITransfer
     private float EnergyPerSecond = 25;
 
     private int EnergyStorageIndex = 0;
-    private List<IStorage> EnergyStorages = new List<IStorage>();
+    private List<IEnergyStorage> EnergyStorages = new List<IEnergyStorage>();
 
     private Slider SliderUI;
 
@@ -133,10 +133,13 @@ public class EnergyGenerator : MonoBehaviour, ITransfer
         );
         if (tStorage)
         {
-            IStorage storage = tStorage.GetComponent<IStorage>();
-            if (!EnergyStorages.Contains(storage))
+            IEnergyStorage storage = tStorage.GetComponent<IEnergyStorage>();
+            if (storage != null)
             {
-                EnergyStorages.Add(storage);
+                if (!EnergyStorages.Contains(storage))
+                {
+                    EnergyStorages.Add(storage);
+                }
             }
         }
     }

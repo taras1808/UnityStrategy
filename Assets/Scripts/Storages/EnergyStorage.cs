@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnergyStorage : MonoBehaviour, IStorage
+public class EnergyStorage : MonoBehaviour, IEnergyStorage
 {
     [SerializeField]
     private float MaxEnergy = 1000;
@@ -10,7 +10,7 @@ public class EnergyStorage : MonoBehaviour, IStorage
     private float Energy = 0;
 
     private int EnergyStorageIndex = 0;
-    private List<IStorage> EnergyStorages = new List<IStorage>();
+    private List<IEnergyStorage> EnergyStorages = new List<IEnergyStorage>();
 
     private Slider SliderUI;
 
@@ -89,10 +89,13 @@ public class EnergyStorage : MonoBehaviour, IStorage
         Transform tStorage = SearchSystem.FindUpByTag(other.transform, Tags.Cannon);
         if (tStorage)
         {
-            IStorage storage = tStorage.GetComponent<IStorage>();
-            if (!EnergyStorages.Contains(storage))
+            IEnergyStorage storage = tStorage.GetComponent<IEnergyStorage>();
+            if (storage != null)
             {
-                EnergyStorages.Add(storage);
+                if (!EnergyStorages.Contains(storage))
+                {
+                    EnergyStorages.Add(storage);
+                }
             }
         }
     }
