@@ -150,8 +150,10 @@ MonoBehaviour:
   showEnergyGenerator: {fileID: 0}
   GetOreText: {fileID: 0}
   PutOreText: {fileID: 0}
+  MoveBuilding: {fileID: 0}
   PlayerEnergyStorage: {fileID: 5694719380199598706}
   PlayerOreStorage: {fileID: 1986778134}
+  BuildManager: {fileID: 0}
 --- !u!1 &3457649008451764653
 GameObject:
   m_ObjectHideFlags: 0

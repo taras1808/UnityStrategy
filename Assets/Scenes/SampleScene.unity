@@ -268,6 +268,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5632615323434417736}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1028268523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1028268523, guid: 36640960756a042b8aeabebe38bac3da,
+    type: 3}
+  m_PrefabInstance: {fileID: 5632615323434417736}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1246675482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,6 +363,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1659956927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1659956927, guid: 36640960756a042b8aeabebe38bac3da,
+    type: 3}
+  m_PrefabInstance: {fileID: 5632615323434417736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1662546203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7905195903054627226, guid: 29acb4a2abc584bc8a31f67635c5b66b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7905195902718751635}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95daf0164d65242bbbe26a4cce2385ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2119307283 stripped
@@ -528,6 +552,18 @@ PrefabInstance:
       propertyPath: PutOreText
       value: 
       objectReference: {fileID: 751922233}
+    - target: {fileID: 711150436, guid: f0e1ba9b22b674ef2b009486a4f23252, type: 3}
+      propertyPath: BuildManager
+      value: 
+      objectReference: {fileID: 1662546203}
+    - target: {fileID: 711150436, guid: f0e1ba9b22b674ef2b009486a4f23252, type: 3}
+      propertyPath: MoveBuilding
+      value: 
+      objectReference: {fileID: 1028268523}
+    - target: {fileID: 711150436, guid: f0e1ba9b22b674ef2b009486a4f23252, type: 3}
+      propertyPath: DeleteBuilding
+      value: 
+      objectReference: {fileID: 1659956927}
     - target: {fileID: 711150436, guid: f0e1ba9b22b674ef2b009486a4f23252, type: 3}
       propertyPath: showEnergyCannon
       value: 

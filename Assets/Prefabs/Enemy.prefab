@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Health: 100
-  Damage: 5
+  Damage: 25
 --- !u!54 &-7579018789483130109
 Rigidbody:
   m_ObjectHideFlags: 0
