@@ -15,10 +15,16 @@ public class PlayerRaycast : MonoBehaviour
     public GameObject GetOreText;
     public GameObject PutOreText;
 
+    public GameObject MoveBuilding;
+    public GameObject DeleteBuilding;
+
+
     [SerializeField]
     private PlayerEnergyStorage PlayerEnergyStorage;
     [SerializeField]
     private PlayerOreStorage PlayerOreStorage;
+    [SerializeField]
+    private BuildManager BuildManager;
 
     void Update()
     {
@@ -26,6 +32,8 @@ public class PlayerRaycast : MonoBehaviour
         showEnergyGenerator.SetActive(false);
         GetOreText.SetActive(false);
         PutOreText.SetActive(false);
+        MoveBuilding.SetActive(false);
+        DeleteBuilding.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, RaycastDistance, RaycastLayer, QueryTriggerInteraction.Ignore))
@@ -39,6 +47,8 @@ public class PlayerRaycast : MonoBehaviour
 
             IEnergyTransfer energyTransfer = t.GetComponent<IEnergyTransfer>();
             IOreTransfer oreTransfer = t.GetComponent<IOreTransfer>();
+
+            IBuildingObject buildingObject = t.GetComponent<IBuildingObject>();
 
             if (energyTransfer != null) {
                 showEnergyGenerator.SetActive(true);
@@ -67,6 +77,23 @@ public class PlayerRaycast : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     PlayerOreStorage.PutOreTo(oreTransfer);
+                }
+            }
+
+            if (buildingObject != null)
+            {
+                MoveBuilding.SetActive(true);
+                DeleteBuilding.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    buildingObject.Delete();
+                    BuildManager.StartBuilding();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Delete))
+                {
+                    buildingObject.Delete();
                 }
             }
         }

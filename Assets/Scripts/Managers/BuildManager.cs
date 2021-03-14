@@ -20,4 +20,9 @@ public class BuildManager : MonoBehaviour
             BuildSystem.NewBuild(CannonPreview);
         }
     }
+
+    public void StartBuilding()
+    {
+        BuildSystem.NewBuild(CannonPreview);
+    }
 }
