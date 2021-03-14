@@ -8,7 +8,7 @@ public class CannonSight : MonoBehaviour
     [SerializeField]
     private float MoveSpeed = 0.1f;
 
-    private Vector3 CurrentVector = Vector3.forward;
+    private Vector3 CurrentVector;
     private Vector3 TargetVector;
 
     private CannonEnergy CannonEnergy;
@@ -21,6 +21,7 @@ public class CannonSight : MonoBehaviour
 
     private void Start()
     {
+        CurrentVector = transform.forward;
         CannonEnergy = GetComponent<CannonEnergy>();
         CannonTargets = GetComponent<CannonTargets>();
         CannonBase = transform.Find("body");
