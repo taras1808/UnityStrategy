@@ -15,10 +15,13 @@ public class CannonEnergy : MonoBehaviour, IEnergyStorage
 
     public bool IsActive => Energy > 0;
 
+    private CannonFire CannonFire; 
+
     private void Start()
     {
         SliderUI = transform.Find("Canvas").Find("EnergySliderUI").GetComponent<Slider>();
         SliderUI.value = Energy / MaxEnergy;
+        CannonFire = GetComponent<CannonFire>();
     }
 
     public void Consume()
@@ -49,6 +52,11 @@ public class CannonEnergy : MonoBehaviour, IEnergyStorage
 
     public float Put(float amount)
     {
+        if (Energy == 0)
+        {
+            StartCoroutine(CannonFire.Reload());
+        }
+
         float freeSpace = MaxEnergy - Energy;
         if (freeSpace >= amount)
         {

@@ -37,17 +37,24 @@ public class CannonFire : MonoBehaviour
             if (!target)
             {
                 return;
-            }
-            CannonEnergy.Consume();
+            }            
             StartCoroutine(Fire(target));
         }
     }
 
     private IEnumerator Fire(Transform target)
     {
+        CannonEnergy.Consume();
         IsFire = true;
         FireBall fireBall = Instantiate(FireBall, SpawnPosition.position, SpawnPosition.rotation).GetComponent<FireBall>();
         fireBall.Target = target;
+        yield return new WaitForSeconds(FireRate);
+        IsFire = false;
+    }
+
+    public IEnumerator Reload()
+    {
+        IsFire = true;
         yield return new WaitForSeconds(FireRate);
         IsFire = false;
     }
